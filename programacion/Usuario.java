@@ -14,12 +14,12 @@ public abstract class Usuario {
         this.nombre = nombre;
         this.email = email;
         this.contrasena = contrasena;
-        // Asignamos la fecha actual en la creación
+        // aqui hacemos la asignacion de la fecha actual en la creacion
         this.fechaRegistro = new Date(); 
         this.estadoLogin = false;
     }
 
-    // Método polimórfico de inicio de sesión
+    // se da inicio al metoo polimórfico de inicio de sesión segun lo visto en clase 
     public boolean iniciarSesion(String contrasena) {
         if (this.contrasena.equals(contrasena)) {
             this.estadoLogin = true;
@@ -35,9 +35,10 @@ public abstract class Usuario {
         System.out.println(nombre + " ha cerrado sesión.");
     }
     
-    // Método abstracto (fuerza a las subclases Cliente y Administrador a implementarlo)
+    // se da paso al metodo abstracto donde fuerza a las subclases cliente y administrador a implementarlo
     public abstract void actualizarDatos();
     
-    // Getters esenciales
+
     public String getNombre() { return nombre; }
+
 }
