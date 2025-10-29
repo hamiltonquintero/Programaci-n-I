@@ -12,7 +12,6 @@ public class InformacionEnvio {
         this.tipoEnvio = tipoEnvio;
         this.direccionEntrega = direccionEntrega;
         this.costoEnvio = calcularCostoEnvio(); 
-        // Ejemplo: 3 días desde ahora
         this.fechaEstimadaEntrega = new Date(System.currentTimeMillis() + 86400000 * 3); 
     }
 
@@ -20,6 +19,7 @@ public class InformacionEnvio {
         return (tipoEnvio.equalsIgnoreCase("Express")) ? 10.00 : 5.00;
     }
     
-    // Getters
+ 
     public double getCostoEnvio() { return costoEnvio; }
+
 }
