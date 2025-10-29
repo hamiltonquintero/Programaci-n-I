@@ -2,17 +2,16 @@ package com.mycompany.programacion;
 
 import java.util.Date;
 import java.util.Scanner;
-// Asegúrate de que IProcesadorPago, EfectivoProcesador, y TarjetaProcesador existan
 
 public class MainDemo {
     public static void main(String[] args) {
         System.out.println("--- DEMOSTRACIÓN INTERACTIVA DE E-COMMERCE ---");
 
-        // 0. Inicializar recursos
+       //se inicia recursos 
         Inventario inventarioPrincipal = new Inventario();
         Scanner scanner = new Scanner(System.in);
 
-        // 1. Crear Productos (Inicializar inventario)
+        // se crea producto y se da inicio a inventario
         Producto lapiz = new Producto("Lápiz HB", 1.00, 50, "Papelería");
         Producto cuaderno = new Producto("Cuaderno A4", 5.00, 20, "Papelería");
         
@@ -24,7 +23,7 @@ public class MainDemo {
         inventarioPrincipal.agregarProducto(lapiz);
         inventarioPrincipal.agregarProducto(cuaderno);
 
-        // 2. Interacción: Preguntar por los datos COMPLETOS del cliente
+        // se pregunta por los datos al cliente
         System.out.println("\n--- REGISTRO DEL NUEVO CLIENTE ---");
         
         System.out.print("Nombre completo: ");
@@ -42,7 +41,7 @@ public class MainDemo {
         System.out.print("Teléfono: ");
         String telefonoCliente = scanner.nextLine();
         
-        // Creamos el objeto Cliente usando TODAS las entradas del usuario
+        // aqie se crea el objeto Cliente usando TODAS las entradas del usuario
         Cliente clienteActual = new Cliente(
             nombreCliente,
             emailCliente, 
@@ -51,12 +50,12 @@ public class MainDemo {
             telefonoCliente
         );
         
-        // Intentamos iniciar sesión con la contraseña proporcionada
+        // aqui intentamos iniciar sesión con la contraseña proporcionada
         clienteActual.iniciarSesion(passwordCliente);
         
         CarritoDeCompras carrito = new CarritoDeCompras(nombreCliente);
 
-        // 3. Interacción: Simular la adición de productos
+        // se da paso a la Simulacion la adición de productos
         System.out.println("\n-- INICIANDO COMPRA --");
         inventarioPrincipal.listarInventario();
 
@@ -72,10 +71,9 @@ public class MainDemo {
              carrito.agregarItem(cuaderno, cantidadCuaderno);
         }
         
-        // Consumir el salto de línea pendiente después de nextInt()
         scanner.nextLine(); 
 
-       // 4. Procesar Pedido y Pago (Interactivo)
+       // se procesa el pedido y el pago
         carrito.mostrarResumen();
         
         System.out.print("Introduce el tipo de envío (Estandar o Express): ");
@@ -87,7 +85,7 @@ public class MainDemo {
         Pedido nuevoPedido = new Pedido(clienteActual, carrito, tipoEnvio);
         nuevoPedido.generarFactura();
         
-        // ******* ZONA DE POLIMORFISMO: CREACIÓN DEL PROCESADOR CORRECTO *******
+        //segun lo visto en clase, aqui se da inicoo al polimorfismo 
         
         IProcesadorPago procesadorSeleccionado;
         
@@ -99,10 +97,10 @@ public class MainDemo {
         
         Pago pago = new Pago(nuevoPedido, procesadorSeleccionado, metodoPagoString); 
         
-        // ******* FIN DEL POLIMORFISMO *******
+        // fin del polimorfismo
 
         if (pago.procesarPago()) {
-            // CORRECCIÓN DE STOCK: Iteramos sobre los ítems REALES comprados.
+            
             for (ItemCarrito item : carrito.getItems()) {
                 inventarioPrincipal.disminuirStock(item.getProducto(), item.getCantidad());
             }
@@ -111,8 +109,8 @@ public class MainDemo {
              System.out.println("\n*** Transacción CANCELADA por fallo en el pago. ***");
         }
         
-        // --- 5. DEMOSTRACIÓN DE RESEÑAS ---
-      // --- 5. DEMOSTRACIÓN INTERACTIVA DE RESEÑAS ---
+     
+      // aqui se da demostracion interactiva de reseñas
         System.out.println("\n\n--- INGRESO DE RESEÑA (OPCIONAL) ---");
         
         System.out.print("¿Deseas dejar una reseña para el producto \"" + lapiz.getNombre() + "\"? (s/n): ");
@@ -121,26 +119,26 @@ public class MainDemo {
         if (respuesta.equalsIgnoreCase("s")) {
             
             int calificacion = 0;
-            // Bucle para validar que la calificación sea un número entre 1 y 5
+            
             while (calificacion < 1 || calificacion > 5) {
                 System.out.print("Introduce tu calificación (1 a 5): ");
-                // Usamos nextInt() para leer el número
+              
                 if (scanner.hasNextInt()) {
                     calificacion = scanner.nextInt();
                 } else {
-                    // Si no es un número, consumimos la línea para evitar bucles infinitos
+                  
                     scanner.nextLine(); 
                     System.out.println("Entrada inválida. Por favor, introduce un número.");
                 }
             }
-            // Consumir el salto de línea pendiente después de nextInt()
+            
             scanner.nextLine(); 
             
             System.out.print("Escribe tu comentario: ");
             String comentario = scanner.nextLine();
 
             try {
-                // Creamos la reseña con los datos del usuario
+                // se crea la reseña con los datos del usuario 
                 Resena nuevaResena = new Resena(clienteActual.getNombre(), calificacion, comentario);
                 lapiz.agregarResena(nuevaResena);
                 System.out.println("\nReseña agregada con éxito por " + clienteActual.getNombre() + ".");
@@ -151,10 +149,9 @@ public class MainDemo {
             System.out.println("No se ha agregado ninguna reseña.");
         }
         
-        // MOSTRAR EL PRODUCTO CON LA NUEVA RESEÑA
+        // se procede a mostrar el producto con la reseña 
         lapiz.mostrarResenas();
 
-        // 6. Final
         inventarioPrincipal.listarInventario();
         scanner.close();
     }
