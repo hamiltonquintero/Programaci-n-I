@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 public class Pedido {
-    private Cliente cliente; // Asociación con Cliente
-    private List<ItemCarrito> items; // Composición (copia de los items del Carrito)
+    private Cliente cliente; // aqui se da la asociacion con cliente
+    private List<ItemCarrito> items; // aqui se da la composición (copia de los items del Carrito)
     private Date fechaPedido;
     private String estado;
     private InformacionEnvio informacionEnvio; // Composición (ya existe)
@@ -19,7 +19,7 @@ public class Pedido {
         this.estado = "Pendiente";
         this.total = carrito.calcularTotal();
         
-        // Creación de la composición InformacionEnvio
+        // se da paso a la creacion de la composicion informacionenvio
         this.informacionEnvio = new InformacionEnvio(tipoEnvio, cliente.getDireccion());
     }
 
@@ -42,8 +42,8 @@ public class Pedido {
         System.out.println("-----------------");
     }
     
-    // Getters
     public double getTotal() { return total; }
     public InformacionEnvio getInformacionEnvio() { return informacionEnvio; }
     public Cliente getCliente() { return cliente; }
+
 }
