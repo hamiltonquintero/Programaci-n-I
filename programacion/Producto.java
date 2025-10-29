@@ -6,7 +6,7 @@ public class Producto {
     protected double precio; 
     private int stock;
     private String categoria;
-    private Descuento descuentoAplicado; // Esta línea ya no dará error
+    private Descuento descuentoAplicado; 
 
     public Producto(String nombre, double precio, int stock, String categoria) {
         this.nombre = nombre;
@@ -35,8 +35,9 @@ public class Producto {
         this.descuentoAplicado = descuento;
     }
 
-    // Getters esenciales
+  
     public String getNombre() { return nombre; }
     public double getPrecioBase() { return precio; }
     public int getStock() { return stock; }
+
 }
