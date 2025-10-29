@@ -5,15 +5,15 @@ import java.util.Scanner;
 
 public class MainDemo {
     public static void main(String[] args) {
-        System.out.println("--- DEMOSTRACIÓN INTERACTIVA DE E-COMMERCE ---");
+        System.out.println("--- DEMOSTRACION CARRITO DE COMPRAS ---");
 
        //se inicia recursos 
         Inventario inventarioPrincipal = new Inventario();
         Scanner scanner = new Scanner(System.in);
 
         // se crea producto y se da inicio a inventario
-        Producto lapiz = new Producto("Lápiz HB", 1.00, 50, "Papelería");
-        Producto cuaderno = new Producto("Cuaderno A4", 5.00, 20, "Papelería");
+        Producto lapiz = new Producto("Lapiz HB", 1.00, 50, "Papeleria");
+        Producto cuaderno = new Producto("Cuaderno A4", 5.00, 20, "Papeleria");
         
         Date inicio = new Date(System.currentTimeMillis() - 86400000); 
         Date fin = new Date(System.currentTimeMillis() + 86400000 * 5); 
@@ -32,16 +32,16 @@ public class MainDemo {
         System.out.print("Email: ");
         String emailCliente = scanner.nextLine();
         
-        System.out.print("Contraseña: ");
+        System.out.print("Contrasena: ");
         String passwordCliente = scanner.nextLine();
         
-        System.out.print("Dirección de envío: ");
+        System.out.print("Direccion de envio: ");
         String direccionCliente = scanner.nextLine();
         
-        System.out.print("Teléfono: ");
+        System.out.print("Telefono: ");
         String telefonoCliente = scanner.nextLine();
         
-        // aqie se crea el objeto Cliente usando TODAS las entradas del usuario
+        // aqui se crea el objeto Cliente usando TODAS las entradas del usuario segun lo visto en clase 
         Cliente clienteActual = new Cliente(
             nombreCliente,
             emailCliente, 
@@ -59,13 +59,13 @@ public class MainDemo {
         System.out.println("\n-- INICIANDO COMPRA --");
         inventarioPrincipal.listarInventario();
 
-        System.out.print("¿Cuántos Lápices HB quieres comprar? (Stock: " + lapiz.getStock() + "): ");
+        System.out.print("¿Cuantos Lápices HB quieres comprar? (Stock: " + lapiz.getStock() + "): ");
         int cantidadLapiz = scanner.nextInt();
         if (cantidadLapiz > 0) {
              carrito.agregarItem(lapiz, cantidadLapiz);
         }
 
-        System.out.print("¿Cuántos Cuadernos A4 quieres comprar? (Stock: " + cuaderno.getStock() + " | Precio con descuento: $" + cuaderno.calcularPrecioTotal() + "): ");
+        System.out.print("¿Cuantos Cuadernos A4 quieres comprar? (Stock: " + cuaderno.getStock() + " | Precio con descuento: $" + cuaderno.calcularPrecioTotal() + "): ");
         int cantidadCuaderno = scanner.nextInt();
         if (cantidadCuaderno > 0) {
              carrito.agregarItem(cuaderno, cantidadCuaderno);
@@ -76,10 +76,10 @@ public class MainDemo {
        // se procesa el pedido y el pago
         carrito.mostrarResumen();
         
-        System.out.print("Introduce el tipo de envío (Estandar o Express): ");
+        System.out.print("Introduce el tipo de envio (Estandar o Express): ");
         String tipoEnvio = scanner.nextLine();
         
-        System.out.print("Introduce el método de pago (Efectivo o Tarjeta): ");
+        System.out.print("Introduce el metodo de pago (Efectivo o Tarjeta): ");
         String metodoPagoString = scanner.nextLine(); 
         
         Pedido nuevoPedido = new Pedido(clienteActual, carrito, tipoEnvio);
@@ -97,7 +97,7 @@ public class MainDemo {
         
         Pago pago = new Pago(nuevoPedido, procesadorSeleccionado, metodoPagoString); 
         
-        // fin del polimorfismo
+        // aqui termina el  polimorfismo
 
         if (pago.procesarPago()) {
             
@@ -106,7 +106,7 @@ public class MainDemo {
             }
             carrito.vaciarCarrito();
         } else {
-             System.out.println("\n*** Transacción CANCELADA por fallo en el pago. ***");
+             System.out.println("\n*** Transaccion CANCELADA por fallo en el pago. ***");
         }
         
      
@@ -121,14 +121,14 @@ public class MainDemo {
             int calificacion = 0;
             
             while (calificacion < 1 || calificacion > 5) {
-                System.out.print("Introduce tu calificación (1 a 5): ");
+                System.out.print("Introduce tu calificacion (1 a 5): ");
               
                 if (scanner.hasNextInt()) {
                     calificacion = scanner.nextInt();
                 } else {
                   
                     scanner.nextLine(); 
-                    System.out.println("Entrada inválida. Por favor, introduce un número.");
+                    System.out.println("Entrada invalida. Por favor, introduce un numero.");
                 }
             }
             
@@ -141,12 +141,12 @@ public class MainDemo {
                 // se crea la reseña con los datos del usuario 
                 Resena nuevaResena = new Resena(clienteActual.getNombre(), calificacion, comentario);
                 lapiz.agregarResena(nuevaResena);
-                System.out.println("\nReseña agregada con éxito por " + clienteActual.getNombre() + ".");
+                System.out.println("\nReseña agregada con exito por " + clienteActual.getNombre() + ".");
             } catch (IllegalArgumentException e) {
-                System.out.println("ERROR: No se pudo crear la reseña: " + e.getMessage());
+                System.out.println("ERROR: No se pudo crear la resena: " + e.getMessage());
             }
         } else {
-            System.out.println("No se ha agregado ninguna reseña.");
+            System.out.println("No se ha agregado ninguna resena.");
         }
         
         // se procede a mostrar el producto con la reseña 
