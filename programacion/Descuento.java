@@ -18,15 +18,16 @@ public class Descuento {
 
     public boolean estaActivo() {
         Date ahora = new Date();
-        // Comprueba si la fecha actual está entre la de inicio y fin
+        
         return ahora.after(fechaInicio) && ahora.before(fechaFin);
     }
 
     public double aplicarDescuento(double precioOriginal) {
         if (estaActivo()) {
-            // Aplica el porcentaje (ej: 0.20 -> 20% de descuento)
+           
             return precioOriginal * (1.0 - porcentaje); 
         }
         return precioOriginal;
     }
 }
+
