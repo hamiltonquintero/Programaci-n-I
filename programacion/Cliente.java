@@ -3,7 +3,7 @@ package com.mycompany.programacion;
 import java.util.ArrayList;
 import java.util.List;
 
-// la clase cliente se extiend  de Usuario (Herencia)
+// la clase cliente se extiende  de Usuario (Herencia)
 public class Cliente extends Usuario {
     private String direccion;
     private String telefono;
@@ -32,10 +32,14 @@ public class Cliente extends Usuario {
         
     }
     
-  
+
+    //delvuelve el carrito activo del cliente
     public CarritoDeCompras getCarritoActivo() {
         return carritoActivo;
     }
+
+    //devuelve la direcion registrada del cliente 
     public String getDireccion() { return direccion; }
    
 }
+
