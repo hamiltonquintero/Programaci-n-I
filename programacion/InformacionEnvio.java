@@ -7,6 +7,7 @@ public class InformacionEnvio {
     private double costoEnvio;
     private String direccionEntrega;
     private Date fechaEstimadaEntrega;
+    
 
     public InformacionEnvio(String tipoEnvio, String direccionEntrega) {
         this.tipoEnvio = tipoEnvio;
@@ -18,8 +19,11 @@ public class InformacionEnvio {
     public double calcularCostoEnvio() {
         return (tipoEnvio.equalsIgnoreCase("Express")) ? 10.00 : 5.00;
     }
+
     
- 
+
+    //devulve el costo calculado del envio
     public double getCostoEnvio() { return costoEnvio; }
 
 }
+
