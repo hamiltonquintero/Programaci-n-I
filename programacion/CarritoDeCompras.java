@@ -28,6 +28,9 @@ public class CarritoDeCompras {
         }
     }
 
+    //metodo revisando (nombre)
+    //recorre todos los intes del carrito y suma sus subtotales
+    //se asegura que el total este actualizado cada vez que se modifica el carrito 
     public double calcularTotal() {
         this.total = 0.0;
         for (ItemCarrito item : items) {
@@ -47,3 +50,4 @@ public class CarritoDeCompras {
     public void vaciarCarrito() { this.items.clear(); this.total = 0.0; }
 
 }
+
