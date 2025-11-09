@@ -2,14 +2,14 @@
 package com.mycompany.programacion;
 
 import java.util.Date;
-
+//Clase abstracta para todos los usuarios del sistema(cliente,administrador)
 public abstract class Usuario {
     protected String nombre;
     protected String email;
     protected String contrasena;
     protected Date fechaRegistro;
     protected boolean estadoLogin;
-
+//Incia los datos del usuario y asigna la fecha actual como fecha de registro
     public Usuario(String nombre, String email, String contrasena) {
         this.nombre = nombre;
         this.email = email;
@@ -18,7 +18,7 @@ public abstract class Usuario {
         this.fechaRegistro = new Date(); 
         this.estadoLogin = false;
     }
-
+// verifica la contraseña y el estado de seccion si es correcta
     // se da inicio al metoo polimórfico de inicio de sesión segun lo visto en clase 
     public boolean iniciarSesion(String contrasena) {
         if (this.contrasena.equals(contrasena)) {
@@ -34,7 +34,7 @@ public abstract class Usuario {
         this.estadoLogin = false;
         System.out.println(nombre + " ha cerrado sesión.");
     }
-    
+    //Metodo abstracto que obliga las subclases a implementar su propia logica de actualizacion
     // se da paso al metodo abstracto donde fuerza a las subclases cliente y administrador a implementarlo
     public abstract void actualizarDatos();
     
@@ -42,3 +42,4 @@ public abstract class Usuario {
     public String getNombre() { return nombre; }
 
 }
+
