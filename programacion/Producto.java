@@ -1,5 +1,5 @@
 package com.mycompany.programacion;
-
+//Esta clase representa un producto disponible en el sistema,con atributos como nombre,precio,stock y categoria
 public class Producto {
     private String nombre;
     private String descripcion;
@@ -7,7 +7,7 @@ public class Producto {
     private int stock;
     private String categoria;
     private Descuento descuentoAplicado; 
-
+//Inicia los atributos principales del producto
     public Producto(String nombre, double precio, int stock, String categoria) {
         this.nombre = nombre;
         this.precio = precio;
@@ -41,3 +41,4 @@ public class Producto {
     public int getStock() { return stock; }
 
 }
+
